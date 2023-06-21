@@ -7,6 +7,10 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 pillow = "*"
+psycopg2-binary = "*"
+django-environ = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
