@@ -16,7 +16,8 @@ import os
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    RENDER=(bool, False)
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -113,12 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # configure a default value that will be used in the development environment
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False),
-    USE_S3=(bool, False),
-	RENDER=(bool, False) # <--- add this 
-)
+
 
 ...
 # add this
