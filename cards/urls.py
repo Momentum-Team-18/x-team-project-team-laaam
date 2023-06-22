@@ -14,17 +14,13 @@ card_detail = CardViewSet.as_view({
     'delete': 'destroy'
 })
 
-user_list = UserViewSet.as_view({
-    'get': 'list'
-})
 user_detail = UserViewSet.as_view({
     'get': 'retrieve'
 })
 
 
 urlpatterns = [
-    path('api/users/', user_list, name='user-list'),
-    path('api/users/<int:pk>', user_list, name='user-detail'),
+    path('api/users/<int:pk>', user_detail, name='user-detail'),
     path('api/cards/', card_list, name='card_list'),
     path('api/cards/<int:pk>', card_detail, name='card_detail'),
 ]
