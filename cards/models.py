@@ -6,8 +6,9 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     avatar_img = models.ImageField()
-    bio = models.TextField()
-    birth_date = models.DateField()
+    bio = models.CharField(max_length=300)
+    birth_date = models.DateField(
+        default=datetime.today, blank=True, null=True)
     follows = models.ManyToManyField('self')
 
 
@@ -22,8 +23,11 @@ class Card(models.Model):
     image_urls = models.URLField(max_length=500)
     date_created = models.DateTimeField()
     privacy = models.BooleanField(default=True, choices=PRIVACY_CHOICES)
-    header = models.CharField(max_length=300)
+    headline = models.CharField(max_length=300)
     front_text = models.TextField()
     back_text = models.TextField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()
+
+
+## class Draft(models.Model): ???
