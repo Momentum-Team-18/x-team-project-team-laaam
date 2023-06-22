@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
@@ -9,6 +10,10 @@ class User(AbstractUser):
     bio = models.TextField()
     birth_date = models.DateField(blank=True,null=True)
     follows = models.ManyToManyField('self')
+
+
+    def __str__(self):
+        return self.username
 
 
 class Card(models.Model):
@@ -27,3 +32,6 @@ class Card(models.Model):
     back_text = models.TextField()
     likes = models.IntegerField()
     dislikes = models.IntegerField()
+
+    def __str__(self):
+        return self.header
