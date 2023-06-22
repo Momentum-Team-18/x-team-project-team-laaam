@@ -23,8 +23,8 @@ user_detail = UserViewSet.as_view({
 
 
 urlpatterns = [
-    path('users/', user_list, name='user-list'),
-    path('users/<int:pk>', user_list, name='user-detail'),
-    path('cards/', card_list, name='card_list'),
-    path('cards/<int:pk>', card_detail, name='card_detail'),
+    path('api/users/', user_list, name='user-list'),
+    path('api/users/<int:pk>', user_list, name='user-detail'),
+    path('api/cards/', card_list, name='card_list'),
+    path('api/cards/<int:pk>', card_detail, name='card_detail'),
 ]
