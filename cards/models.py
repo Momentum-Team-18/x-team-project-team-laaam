@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     avatar_img = models.ImageField()
     bio = models.TextField()
-    birth_date = models.DateField()
+    birth_date = models.DateField(blank=True,null=True)
     follows = models.ManyToManyField('self')
 
 
