@@ -4,7 +4,7 @@ from .models import User, Card
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import permissions
-from serializers import UserSerializer, CardSerializer
+from .serializers import UserSerializer, CardSerializer
 
 # Create your views here.
 
