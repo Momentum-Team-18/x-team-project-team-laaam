@@ -20,7 +20,7 @@ user_detail = UserViewSet.as_view({
 
 
 urlpatterns = [
-    path('api/users/<int:pk>', user_detail, name='user-detail'),
+    path('api/users/<int:pk>', user_detail, name='user_detail'),
     path('api/cards/', card_list, name='card_list'),
     path('api/cards/<int:pk>', card_detail, name='card_detail'),
 ]
