@@ -34,12 +34,13 @@ class Card(models.Model):
     background_color = models.CharField(blank=True, null=True)
     border_color = models.CharField(blank=True, null=True)
     font_color = models.CharField(blank=True, null=True)
-    header_font = models.TextField()
-    front_text_font = models.TextField()
-    back_text_font = models.TextField()
+    header_font = models.TextField(blank=True, null=True)
+    front_text_font = models.TextField(blank=True, null=True)
+    back_text_font = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.header
+
 
 class Comment(models.Model):
     user = models.ForeignKey(
