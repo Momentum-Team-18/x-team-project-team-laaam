@@ -1,2 +1,41 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/ajn9RS2P)
-add something
+# Team LAAM BE README
+
+**Token Authentication System**
+* Djoser
+* Docs: https://djoser.readthedocs.io/en/latest/introduction.html
+  
+**Deployment**
+* Render
+* Main Webservice Address: https://cards-q6a8.onrender.com
+* Database: Postgresql@14
+* Docs: https://render.com/docs/deploy-django
+
+**Create User**
+|Method  |URL                |Request                           |Response                      |                               
+|--------|-------------------|----------------------------------|------------------------------|
+|POST    |auth/users/        |{{ User.USERNAME_FIELD }}         |HTTP_201_CREATED:             |
+|        |                   |{{ User.REQUIRED_FIELDS }}        |{{ User.USERNAME_FIELD }}     |
+|        |                   |password                          |{{ User._meta.pk.name }}      |
+|        |                   |re_password                       |{{ User.REQUIRED_FIELDS }}    |
+|        |                   |                                  |------------------------------|
+|        |                   |                                  |HTTP_400_BAD_REQUEST:         |     
+|        |                   |                                  |{{ User.USERNAME_FIELD }}     |
+|        |                   |                                  |{{ User.REQUIRED_FIELDS }}    |
+|        |                   |                                  |password                      |
+|        |                   |                                  |re_password                   |
+
+**Endpoints**
+|Method  |URL                |Input                             |Output                                |Notes                                 |
+|--------|-------------------|----------------------------------|--------------------------------------|--------------------------------------|
+|LOGIN   |auth/token/login/  |{{User.USERNAME_FIELD}}, password |HTTP_200_OK, auth_token|token create  |                                      |
+|LOGOUT  |auth/token/logout/ |   -                              |HTTP_204_NO_CONTENT                   |                                      |
+|GET     |api/cards/         |   -                              |list of all cards                     |list                                  |
+|GET     |api/cards/<int:pk> |   -                              |card info                             |retrieve card detail with specified pk|
+|POST    |api/cards/         |card data                         |new card                              |creates card                          |
+|PATCH   |api/cards/<int:pk> |card data                         |updated card                          |updates card with specified pk        |
+|DELETE  |api/cards/<int:pk> |   -                              |       -                              |deletes card with specified pk        |
+|GET     |api/users/         |   -                              |list of users                         |list                                  |
+|GET     |api/users/<int:pk> |  -                               |user info                             |retrieve user detail with specified pk|
+
+
+
