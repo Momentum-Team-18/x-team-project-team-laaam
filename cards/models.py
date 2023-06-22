@@ -7,8 +7,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    avatar_img = models.ImageField()
-    bio = models.TextField()
+    avatar_img = models.ImageField(blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     follows = models.ManyToManyField('self')
 
@@ -23,14 +23,14 @@ class Card(models.Model):
         to=User, on_delete=models.CASCADE, related_name='cards_to_sender')
     receiver = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='cards_to_receiver')
-    image_urls = models.URLField(max_length=500)
+    image_urls = models.URLField(max_length=500, blank=True, null=True)
     date_created = models.DateTimeField()
     privacy = models.BooleanField(default=True, choices=PRIVACY_CHOICES)
     headline = models.CharField(max_length=300)
-    front_text = models.TextField()
-    back_text = models.TextField()
-    likes = models.IntegerField()
-    dislikes = models.IntegerField()
+    front_text = models.TextField(blank=True, null=True)
+    back_text = models.TextField(blank=True, null=True)
+    likes = models.IntegerField(blank=True, null=True)
+    dislikes = models.IntegerField(blank=True, null=True)
     background_color = models.CharField(blank=True, null=True)
     border_color = models.CharField(blank=True, null=True)
     font_color = models.CharField(blank=True, null=True)
@@ -39,7 +39,7 @@ class Card(models.Model):
     back_text_font = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.header
+        return self.headline
 
 
 class Comment(models.Model):
