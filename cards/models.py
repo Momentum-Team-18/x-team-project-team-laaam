@@ -10,14 +10,25 @@ class User(AbstractUser):
     avatar_img = models.ImageField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
-    follows = models.ManyToManyField('self')
+    #follows = models.ManyToManyField('self')
 
     def __str__(self):
         return self.username
 
 
+class Follow(models.Model):
+    user = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name="follows_as_follower"
+    )
+
+    user_follows = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name="following"    
+    )
+    
+
 class Card(models.Model):
     PRIVACY_CHOICES = [(False, 'Private'), (True, 'Public')]
+
 
     SCRIPT = 'Script'
     SERIF = 'Serif'
@@ -28,7 +39,12 @@ class Card(models.Model):
     sender = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='cards_to_sender')
     receiver = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name='cards_to_receiver')
+
+    sent_by_user = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name='cards_sent', blank=True, null=True)
+    sent_to_user = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name='cards_received', blank=True, null=True)
+
     image_urls = models.URLField(max_length=500, blank=True, null=True)
     date_created = models.DateTimeField()
     privacy = models.BooleanField(default=True, choices=PRIVACY_CHOICES)
