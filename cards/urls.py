@@ -1,26 +1,13 @@
-from cards.views import CardViewSet, UserViewSet
+from cards.views import CardViewSet, ProfileViewSet, UserSentViewSet, UserReceivedViewSet
 from django.conf.urls import include
 from django.urls import path
 from cards import views
 
-card_list = CardViewSet.as_view({
-    'get': 'list',
-    'post': 'create'
-})
-card_detail = CardViewSet.as_view({
-    'get': 'retrieve',
-    'put': 'update',
-    'patch': 'partial_update',
-    'delete': 'destroy'
-})
-
-user_detail = UserViewSet.as_view({
-    'get': 'retrieve'
-})
-
 
 urlpatterns = [
-    path('api/users/<int:pk>', user_detail, name='user_detail'),
-    path('api/cards/', card_list, name='card_list'),
-    path('api/cards/<int:pk>', card_detail, name='card_detail'),
+    path('api/profile/<int:pk>', views.ProfileViewSet.as_view(), name='user_detail'),
+    path('api/cards/', views.CardViewSet.as_view(), name='card_list'),
+    path('api/cards/<int:pk>', views.CardViewSet.as_view(), name='card_detail'),
+    path('api/cards/sent/', views.UserSentViewSet.as_view(), name='user_sent'),
+    path('api/cards/received/', views.UserReceivedViewSet.as_view(), name='user_received'),
 ]
