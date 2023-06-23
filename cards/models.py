@@ -51,6 +51,9 @@ class Card(models.Model):
     background_color = models.CharField(blank=True, null=True)
     border_color = models.CharField(blank=True, null=True)
     font_color = models.CharField(blank=True, null=True)
+    background_color = models.CharField(blank=True, null=True)
+    border_color = models.CharField(blank=True, null=True)
+    font_color = models.CharField(blank=True, null=True)
     header_font = models.TextField(blank=True, null=True)
     front_text_font = models.TextField(
         blank=True, null=True, choices=FONT_CHOICES)
