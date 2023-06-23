@@ -39,10 +39,10 @@ class UserReceivedViewSet(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class FollowerPostViewSet(generics.ListAPIView):
-    queryset = Card.objects.all()
+# class FollowerPostViewSet(generics.ListAPIView):
+#     queryset = Card.objects.all()
 
-    def get_queryset(self):
-        return self.request.user.sent_by_user
-    serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated]
+#     def get_queryset(self):
+#         return self.request.user.sent_by_user
+#     serializer_class = CardSerializer
+#     permission_classes = [permissions.IsAuthenticated]
