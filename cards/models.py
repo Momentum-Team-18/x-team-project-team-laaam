@@ -49,18 +49,17 @@ class Card(models.Model):
                       (NO_BORDER, 'No Border')]
 
     sent_by_user = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name='cards_sent', blank=True, null=True)
+        to=User, on_delete=models.CASCADE, related_name='cards_sent')
     sent_to_user = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name='cards_received', blank=True, null=True)
+        to=User, on_delete=models.CASCADE, related_name='cards_received')
 
     image_urls = models.URLField(max_length=500, blank=True, null=True)
-    date_created = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now_add=True)
     privacy = models.BooleanField(default=True, choices=PRIVACY_CHOICES)
     headline = models.CharField(max_length=300)
     front_text = models.TextField(blank=True, null=True)
     back_text = models.TextField(blank=True, null=True)
     likes = models.IntegerField(blank=True, null=True)
-    dislikes = models.IntegerField(blank=True, null=True)
     background_color = models.CharField(
         blank=True, null=True, choices=COLOR_CHOICES)
     border_color = models.CharField(
