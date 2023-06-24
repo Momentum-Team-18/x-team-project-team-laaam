@@ -42,11 +42,11 @@ class Card(models.Model):
     COLOR_CHOICES = [(BLUE, 'Blue'), (YELLOW, 'Yellow'),
                      (RED, 'Red'), (PURPLE, 'Purple'), (ORANGE, 'Orange')]
 
-    DOTTED = 'Dotted'
-    SOLID = 'Solid'
-    NO_BORDER = 'No Border'
-    BORDER_CHOICES = [(DOTTED, 'Dotted'), (SOLID, 'Solid'),
-                      (NO_BORDER, 'No Border')]
+    # DOTTED = 'Dotted'
+    # SOLID = 'Solid'
+    # NO_BORDER = 'No Border'
+    # BORDER_CHOICES = [(DOTTED, 'Dotted'), (SOLID, 'Solid'),
+    #                   (NO_BORDER, 'No Border')]
 
     sent_by_user = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='cards_sent', blank=True, null=True)
@@ -65,8 +65,8 @@ class Card(models.Model):
         blank=True, null=True, choices=COLOR_CHOICES)
     border_color = models.CharField(
         blank=True, null=True, choices=COLOR_CHOICES)
-    border_decor = models.CharField(
-        blank=True, null=True, choices=BORDER_CHOICES)
+    # border_decor = models.CharField(
+    #     blank=True, null=True, choices=BORDER_CHOICES)
     font_color = models.CharField(blank=True, null=True, choices=COLOR_CHOICES)
     header_font = models.TextField(blank=True, null=True)
     front_text_font = models.TextField(
