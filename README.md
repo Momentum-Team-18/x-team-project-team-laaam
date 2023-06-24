@@ -25,16 +25,19 @@
 |        |                   |                                  |re_password                   |
 
 **Endpoints**
-|Method  |URL                |Input                             |Output                                |Notes                                   |
-|--------|-------------------|----------------------------------|--------------------------------------|----------------------------------------|
-|LOGIN   |auth/token/login/  |{{User.USERNAME_FIELD}}, password |HTTP_200_OK, auth_token|token create  |                                        |
-|LOGOUT  |auth/token/logout/ |   -                              |HTTP_204_NO_CONTENT                   |                                        |
-|GET     |api/cards/         |   -                              |list of all cards                     |list                                    |
-|GET     |api/cards/<int:pk> |   -                              |card info                             |retrieve card detail with specified pk  |
-|POST    |api/cards/         |card data                         |new card                              |creates card                            |
-|PATCH   |api/cards/<int:pk> |card data                         |updated card                          |updates card with specified pk          |
-|DELETE  |api/cards/<int:pk> |   -                              |       -                              |deletes card with specified pk          |                    
-|GET     |api/users/<int:pk> |  -                               |user info                             |*Do you want this to be a user profile? |
-
+|Method  |URL                  |Input                             |Output                                   |Notes                                         |
+|--------|---------------------|----------------------------------|-----------------------------------------|----------------------------------------------|
+|LOGIN   |auth/token/login/    |{{User.USERNAME_FIELD}}, password |HTTP_200_OK, auth_token|token create     |                                              |
+|LOGOUT  |auth/token/logout/   |-                                 |HTTP_204_NO_CONTENT                      |                                              |
+|        |                     |                                  |                                         |                                              |
+|GET     |api/cards/<int:pk>   |-                                 |card info                                |retrieves card detail with specified pk       |
+|POST    |api/cards/           |card data                         |new card                                 |creates card                                  |
+|PATCH   |api/cards/<int:pk>   |card data                         |updated card                             |updates card with specified pk                |
+|DELETE  |api/cards/<int:pk>   |-                                 |-                                        |deletes card with specified pk                |                     
+|GET     |api/profile/<int:pk> |-                                 |user info                                |retrieves user with specified pk profile info |
+|PATCH   |api/profile/<int:pk> |-                                 |updated user profile                     |updates user profile with specified pk        |
+|DELETE  |api/profile/<int:pk> |-                                 |-                                        |deletes user profile with specified pk        |
+|GET     |api/cards/sent/      |-                                 |list of cards logged in user has sent    |associated field: sent_by_user, read-only     |
+|GET     |api/cards/received/  |-                                 |list of cards logged in user has received|associated field: sent_to_user, read-only     |
 
 
