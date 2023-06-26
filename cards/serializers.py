@@ -5,10 +5,13 @@ from cards.models import Card, User, Follow
 
 class CardSerializer(serializers.ModelSerializer):
 
+
+
     sent_by_user = serializers.SlugRelatedField(
         slug_field='username', queryset=User.objects.all())
     sent_to_user = serializers.SlugRelatedField(
         slug_field='username', queryset=User.objects.all())
+
 
     class Meta:
         model = Card
@@ -16,16 +19,19 @@ class CardSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    followers = serializers.HyperlinkedRelatedField(
-        many=True, view_name='user_followers', read_only=True)
-
     class Meta:
         model = User
         exclude = ['password']
 
 
-class FollowSerializer(serializers.ModelSerializer):
-
+class ThisUserFollowsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
-        fields = '__all__'
+        fields = ['user_this_user_is_following']
+
+
+class FollowsThisUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follow
+        fields = ['this_user']
+
