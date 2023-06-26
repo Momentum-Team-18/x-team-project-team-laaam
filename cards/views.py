@@ -51,5 +51,6 @@ class FollowsThisUserViewSet(generics.ListAPIView):
     queryset = Follow.objects.all()
 
     def get_queryset(self):
-        return self.request.user.follows_this_user
+        user = self.request.user
+        return Follow.objects.filter(user_this_user_is_following_id=user)
     serializer_class = FollowsThisUserSerializer

@@ -24,4 +24,4 @@ class ThisUserFollowsSerializer(serializers.ModelSerializer):
 class FollowsThisUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
-        fields = ['user_following_this_user']
+        fields = ['this_user']
