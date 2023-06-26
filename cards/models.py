@@ -10,24 +10,21 @@ class User(AbstractUser):
     avatar_img = models.ImageField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
-    # follows = models.ManyToManyField('self', symmetrical=False)
-    # follows_user = models.ManyToManyField('self', symmetrical=False)
 
     def __str__(self):
         return self.username
 
 
 class Follow(models.Model):
-    logged_in_user = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name="follows_as_follower"
-    )
-
-    user_who_user_follows = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name="following"
-    )
+    this_user = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name='follows_user')
+    user_this_user_is_following = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, related_name='follows_these_users')
+    user_following_this_user = models.ForeignKey(
+        to='self', on_delete=models.CASCADE, related_name='follows_this_user')
 
     def __str__(self):
-        return str(self.logged_in_user)
+        return str(self.this_user)
 
 
 class Card(models.Model):

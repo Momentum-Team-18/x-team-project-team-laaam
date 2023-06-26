@@ -6,4 +6,4 @@ from .models import User, Card, Follow
 
 admin.site.register(User),
 admin.site.register(Card),
-admin.site.register(Follow)
+admin.site.register(Follow),

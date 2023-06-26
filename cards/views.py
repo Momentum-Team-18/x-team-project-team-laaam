@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets, mixins, generics, permissions
-from .models import User, Card
+from .models import User, Card, Follow
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import ProfileSerializer, CardSerializer
+from .serializers import FollowsThisUserSerializer, ThisUserFollowsSerializer, ProfileSerializer, CardSerializer
 
 # Create your views here.
 
@@ -39,10 +39,17 @@ class UserReceivedViewSet(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-# class FollowerPostViewSet(generics.ListAPIView):
-#     queryset = Card.objects.all()
+class ThisUserFollowsViewSet(generics.ListAPIView):
+    queryset = Follow.objects.all()
 
-#     def get_queryset(self):
-#         return self.request.user.sent_by_user
-#     serializer_class = CardSerializer
-#     permission_classes = [permissions.IsAuthenticated]
+    def get_queryset(self):
+        return self.request.user.follows_user
+    serializer_class = ThisUserFollowsSerializer
+
+
+class FollowsThisUserViewSet(generics.ListAPIView):
+    queryset = Follow.objects.all()
+
+    def get_queryset(self):
+        return self.request.user.follows_this_user
+    serializer_class = FollowsThisUserSerializer
