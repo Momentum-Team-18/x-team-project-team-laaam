@@ -5,8 +5,10 @@ from cards.models import Card, User, Follow
 
 class CardSerializer(serializers.ModelSerializer):
 
-    sent_by_user = serializers.ReadOnlyField(source='sent_by_user.username')
-    sent_to_user = serializers.ReadOnlyField(source='sent_to_user.username')
+    sent_by_user = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all())
+    sent_to_user = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all())
 
     class Meta:
         model = Card

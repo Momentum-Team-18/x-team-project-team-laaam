@@ -15,16 +15,16 @@ class ProfileViewSet(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class AllCardViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+class AllCardViewSet(generics.ListCreateAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+    # def get(self, request, *args, **kwargs):
+    #     return self.list(request, *args, **kwargs)
 
-    def post(self, request, pk, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+    # def post(self, request, pk, *args, **kwargs):
+    #     return self.create(request, *args, **kwargs)
 
 
 class OneCardViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
