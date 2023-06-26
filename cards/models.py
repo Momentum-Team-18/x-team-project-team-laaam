@@ -20,8 +20,8 @@ class Follow(models.Model):
         to=User, on_delete=models.CASCADE, related_name='follows_user', blank=True, null=True)
     user_this_user_is_following = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='follows_these_users', blank=True, null=True)
-    # user_following_this_user = models.ForeignKey(
-    #     to='self', on_delete=models.CASCADE, related_name='follows_this_user')
+    user_following_this_user = models.ForeignKey(
+        to='self', on_delete=models.CASCADE, related_name='follows_this_user', blank=True, null=True)
 
     def __str__(self):
         return str(self.this_user)
