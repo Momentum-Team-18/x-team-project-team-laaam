@@ -5,40 +5,56 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import FollowsThisUserSerializer, ThisUserFollowsSerializer, ProfileSerializer, CardSerializer, FollowUserSerializer
+from cards.permissions import IsCardSenderOrReadOnly, IsProfileOwnerOrReadOnly
 
 # Create your views here.
 
 
 class ProfileViewSet(generics.RetrieveUpdateDestroyAPIView):
+    '''
+    Methods: GET, PATCH, DELETE
+    PATCH and DELETE methods only able to be performed by profile owner
+    '''
     queryset = User.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly, IsProfileOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(sent_by_user=self.request.user)
 
 
 class AllCardViewSet(generics.ListCreateAPIView):
+    '''
+    Methods: GET, POST
+    List of all cards and ability to create a new card
+    '''
 
     queryset = Card.objects.all()
     serializer_class = CardSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
-class OneCardViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+class OneCardViewSet(generics.RetrieveUpdateDestroyAPIView):
+    '''
+    Methods: GET, PATCH, DELETE
+    PATCH and DELETE methods only able to be performed by sender of card
+    '''
     queryset = Card.objects.all()
     serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly, IsCardSenderOrReadOnly]
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, pk, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        serializer.save(sent_by_user=self.request.user)
 
 
 class UserSentViewSet(generics.ListAPIView):
     queryset = Card.objects.all()
+    '''
+    Methods: GET
+    List of cards signeded-in user has sent
+    '''
 
     def get_queryset(self):
         return self.request.user.cards_sent
@@ -47,6 +63,10 @@ class UserSentViewSet(generics.ListAPIView):
 
 
 class UserReceivedViewSet(generics.ListAPIView):
+    '''
+    Methods: GET
+    List of cards sent to signed-in user
+    '''
     queryset = Card.objects.all()
 
     def get_queryset(self):
@@ -56,6 +76,10 @@ class UserReceivedViewSet(generics.ListAPIView):
 
 
 class FollowUserViewSet(generics.CreateAPIView):
+    '''
+    Methods: POST
+    Only signed-in user able to request to follow another user
+    '''
     queryset = Follow.objects.all()
     serializer_class = FollowUserSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -65,6 +89,10 @@ class FollowUserViewSet(generics.CreateAPIView):
 
 
 class ThisUserFollowsViewSet(generics.ListAPIView):
+    '''
+    Methods: GET
+    List of users that the signed-in user follows
+    '''
     queryset = Follow.objects.all()
 
     def get_queryset(self):
@@ -73,6 +101,10 @@ class ThisUserFollowsViewSet(generics.ListAPIView):
 
 
 class FollowsThisUserViewSet(generics.ListAPIView):
+    '''
+    Methods: GET
+    List of users that follow the signed-in user
+    '''
     queryset = Follow.objects.all()
 
     def get_queryset(self):
