@@ -22,18 +22,27 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class FollowUserSerializer(serializers.ModelSerializer):
+    user_this_user_is_following = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all())
+
     class Meta:
         model = Follow
         fields = ['user_this_user_is_following']
 
 
 class ThisUserFollowsSerializer(serializers.ModelSerializer):
+    user_this_user_is_following = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all())
+
     class Meta:
         model = Follow
         fields = ['user_this_user_is_following']
 
 
 class FollowsThisUserSerializer(serializers.ModelSerializer):
+    this_user = serializers.SlugRelatedField(
+        slug_field='username', queryset=User.objects.all())
+
     class Meta:
         model = Follow
         fields = ['this_user']
