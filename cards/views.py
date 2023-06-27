@@ -15,14 +15,11 @@ class ProfileViewSet(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-
 class AllCardViewSet(generics.ListCreateAPIView):
 
     queryset = Card.objects.all()
     serializer_class = CardSerializer
     permission_classes = [permissions.IsAuthenticated]
-
-
 
 
 class OneCardViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
@@ -38,7 +35,6 @@ class OneCardViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
 
 
 class UserSentViewSet(generics.ListAPIView):
@@ -58,6 +54,7 @@ class UserReceivedViewSet(generics.ListAPIView):
     serializer_class = CardSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+
 class FollowUserViewSet(generics.CreateAPIView):
     queryset = Follow.objects.all()
     serializer_class = FollowUserSerializer
@@ -68,7 +65,7 @@ class ThisUserFollowsViewSet(generics.ListAPIView):
     queryset = Follow.objects.all()
 
     def get_queryset(self):
-        return self.request.user.follows_user
+        return self.request.user.followees
     serializer_class = ThisUserFollowsSerializer
 
 
@@ -79,4 +76,3 @@ class FollowsThisUserViewSet(generics.ListAPIView):
         user = self.request.user
         return Follow.objects.filter(user_this_user_is_following_id=user)
     serializer_class = FollowsThisUserSerializer
-

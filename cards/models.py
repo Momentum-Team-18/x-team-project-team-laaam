@@ -17,9 +17,9 @@ class User(AbstractUser):
 
 class Follow(models.Model):
     this_user = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name='follows_user', blank=True, null=True)
+        to=User, on_delete=models.CASCADE, related_name='followees', blank=True, null=True)
     user_this_user_is_following = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name='follows_these_users', blank=True, null=True)
+        to=User, on_delete=models.CASCADE, related_name='following', blank=True, null=True)
 
     def __str__(self):
         return str(self.this_user)
