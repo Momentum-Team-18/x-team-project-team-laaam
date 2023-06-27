@@ -18,4 +18,5 @@ urlpatterns = [
          views.FollowsThisUserViewSet.as_view(), name="user_followers"),
     path('api/follow_user/',
          views.FollowUserViewSet.as_view(), name="follow_user"),
+
 ]
