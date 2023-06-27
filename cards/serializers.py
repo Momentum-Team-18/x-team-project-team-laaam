@@ -20,6 +20,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = User
         exclude = ['password']
 
+class FollowUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follow
+        fields = ['this_user', 'user_this_user_is_following']
 
 class ThisUserFollowsSerializer(serializers.ModelSerializer):
     class Meta:

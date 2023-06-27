@@ -4,7 +4,7 @@ from .models import User, Card, Follow
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import FollowsThisUserSerializer, ThisUserFollowsSerializer, ProfileSerializer, CardSerializer
+from .serializers import FollowsThisUserSerializer, ThisUserFollowsSerializer, ProfileSerializer, CardSerializer, FollowUserSerializer
 
 # Create your views here.
 
@@ -56,6 +56,11 @@ class UserReceivedViewSet(generics.ListAPIView):
     def get_queryset(self):
         return self.request.user.cards_received
     serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class FollowUserViewSet(generics.CreateAPIView):
+    queryset = Follow.objects.all()
+    serializer_class = FollowUserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
