@@ -56,8 +56,8 @@ class Card(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     privacy = models.BooleanField(default=True, choices=PRIVACY_CHOICES)
     headline = models.CharField(max_length=300)
-    front_text = models.TextField(blank=True, null=True)
-    back_text = models.TextField(blank=True, null=True)
+    front_text = models.TextField()
+    inner_text = models.TextField()
     likes = models.IntegerField(blank=True, null=True)
     background_color = models.CharField(
         blank=True, null=True, choices=COLOR_CHOICES)
