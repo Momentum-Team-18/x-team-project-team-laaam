@@ -60,6 +60,9 @@ class FollowUserViewSet(generics.CreateAPIView):
     serializer_class = FollowUserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(this_user=self.request.user)
+
 
 class ThisUserFollowsViewSet(generics.ListAPIView):
     queryset = Follow.objects.all()
