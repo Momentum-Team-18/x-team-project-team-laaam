@@ -30,7 +30,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'first_name', 'last_name',
                   'bio', 'date_joined', 'cards_sent', 'cards_received']
-        # exclude = ['password']
 
 
 class FollowUserSerializer(serializers.ModelSerializer):
@@ -65,7 +64,7 @@ class ThisUserFollowsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Follow
-        fields = ['user_this_user_is_following']
+        fields = ['user_this_user_is_following', 'id']
 
 
 class FollowsThisUserSerializer(serializers.ModelSerializer):
@@ -80,8 +79,3 @@ class FollowsThisUserSerializer(serializers.ModelSerializer):
         model = Follow
         fields = ['this_user']
 
-
-# class CardsByFolloweeSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Card
