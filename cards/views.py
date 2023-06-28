@@ -4,8 +4,8 @@ from .models import User, Card, Follow
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import FollowsThisUserSerializer, ThisUserFollowsSerializer, ProfileSerializer, CardSerializer, FollowUserSerializer
-from cards.permissions import IsCardSenderOrReadOnly, IsProfileOwnerOrReadOnly
+from .serializers import UnfollowUserSerializer, FollowsThisUserSerializer, ThisUserFollowsSerializer, ProfileSerializer, CardSerializer, FollowUserSerializer
+from cards.permissions import IsCardSenderOrReadOnly, IsProfileOwnerOrReadOnly, IsThisUserUnfollowingOrReadOnly
 
 # Create your views here.
 
@@ -84,6 +84,20 @@ class FollowUserViewSet(generics.CreateAPIView):
     queryset = Follow.objects.all()
     serializer_class = FollowUserSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(this_user=self.request.user)
+
+
+class UnfollowUserViewSet(generics.DestroyAPIView):
+    '''
+    Methods: DELETE
+    Only signed-in user able to request to unfollow another user
+    '''
+    queryset = Follow.objects.all()
+    serializer_class = UnfollowUserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsThisUserUnfollowingOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(this_user=self.request.user)

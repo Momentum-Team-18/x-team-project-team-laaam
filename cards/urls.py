@@ -1,4 +1,4 @@
-from cards.views import AllCardViewSet, OneCardViewSet, ProfileViewSet, UserSentViewSet, UserReceivedViewSet, ThisUserFollowsViewSet, ThisUserFollowsViewSet, FollowsThisUserViewSet, FollowUserViewSet
+from cards.views import AllCardViewSet, OneCardViewSet, ProfileViewSet, UserSentViewSet, UserReceivedViewSet, ThisUserFollowsViewSet, ThisUserFollowsViewSet, FollowsThisUserViewSet, FollowUserViewSet, UnfollowUserViewSet
 from django.conf.urls import include
 from django.urls import path
 from cards import views
@@ -23,8 +23,13 @@ urlpatterns = [
 
     path('api/user_followers/',
          views.FollowsThisUserViewSet.as_view(), name="user_followers"),
-         
+
     path('api/follow_user/',
          views.FollowUserViewSet.as_view(), name="follow_user"),
+
+    path('api/unfollow_user/<int:pk>',
+         views.UnfollowUserViewSet.as_view(), name="unfollow_user")
+
+
 
 ]
