@@ -6,7 +6,8 @@ from cards import views
 
 urlpatterns = [
 
-    path('api/profile/<int:pk>/', views.ProfileViewSet.as_view(), name='user_detail'),
+    path('api/profile/<username>/',
+         views.ProfileViewSet.as_view(), name='user_detail'),
 
     path('api/cards/', views.AllCardViewSet.as_view(), name='card_list'),
 
