@@ -20,11 +20,17 @@ class CardSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     '''
-    Profile instance
+    Profile instance with nested CardSerializer for list of the cards 
+    the user has sent and received
     '''
+    cards_sent = CardSerializer(many=True, read_only=True)
+    cards_received = CardSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        exclude = ['password']
+        fields = ['username', 'first_name', 'last_name',
+                  'bio', 'date_joined', 'cards_sent', 'cards_received']
+        # exclude = ['password']
 
 
 class FollowUserSerializer(serializers.ModelSerializer):
@@ -49,7 +55,7 @@ class UnfollowUserSerializer(serializers.ModelSerializer):
         fields = ['user_this_user_is_following']
 
 
-class ThisUserFollowsSerializer(serializers.ModelSerializer):
+class ThisUserFollowsListSerializer(serializers.ModelSerializer):
     '''
     Lists users logged-in user follows
     Renders username instead of pk/id
@@ -73,3 +79,9 @@ class FollowsThisUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
         fields = ['this_user']
+
+
+# class CardsByFolloweeSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = Card
