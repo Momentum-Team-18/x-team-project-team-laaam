@@ -72,6 +72,10 @@ class Card(models.Model):
     back_text_font = models.TextField(
         blank=True, null=True, choices=FONT_CHOICES)
 
+    class Meta:
+
+        ordering = ['-date_created']
+
     def __str__(self):
         return self.headline
 
