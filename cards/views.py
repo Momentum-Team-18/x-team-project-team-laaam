@@ -17,6 +17,7 @@ class ProfileViewSet(generics.RetrieveUpdateDestroyAPIView):
     '''
     queryset = User.objects.all()
     serializer_class = ProfileSerializer
+    lookup_field = "username"
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsProfileOwnerOrReadOnly]
 
