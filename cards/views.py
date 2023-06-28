@@ -28,7 +28,7 @@ class ProfileViewSet(generics.RetrieveUpdateDestroyAPIView):
 class AllCardViewSet(generics.ListCreateAPIView):
     '''
     Methods: GET, POST
-    List of all cards and ability to create a new card
+    List of all cards and can create a new card
     '''
 
     queryset = Card.objects.all()
@@ -54,7 +54,7 @@ class UserSentViewSet(generics.ListAPIView):
     queryset = Card.objects.all()
     '''
     Methods: GET
-    List of cards signeded-in user has sent
+    List of cards sent by signed-in user
     '''
 
     def get_queryset(self):
