@@ -1,6 +1,4 @@
-from typing import Any
 from django.db import models
-from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
@@ -80,15 +78,15 @@ class Card(models.Model):
         return self.headline
 
 
-class Comment(models.Model):
-    user = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, related_name='comments_by_user'
-    )
-    card = models.ForeignKey(
-        to=Card, on_delete=models.CASCADE, related_name='comments_on_card'
-    )
-    body = models.TextField()
-    posted_date = models.DateTimeField(default=timezone.now)
+# class Comment(models.Model):
+#     user = models.ForeignKey(
+#         to=User, on_delete=models.CASCADE, related_name='comments_by_user'
+#     )
+#     card = models.ForeignKey(
+#         to=Card, on_delete=models.CASCADE, related_name='comments_on_card'
+#     )
+#     body = models.TextField()
+#     posted_date = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
-        return self.body
+#     def __str__(self):
+#         return self.body

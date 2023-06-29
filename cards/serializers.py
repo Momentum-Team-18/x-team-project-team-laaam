@@ -1,4 +1,3 @@
-from django.contrib.auth.models import AbstractUser
 from rest_framework import serializers
 from cards.models import Card, User, Follow
 

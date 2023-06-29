@@ -1,5 +1,4 @@
 from cards.views import AllCardViewSet, OneCardViewSet, ProfileViewSet, UserSentViewSet, UserReceivedViewSet, ThisUserFollowsListViewSet, FollowsThisUserViewSet, FollowUserViewSet, UnfollowUserViewSet
-from django.conf.urls import include
 from django.urls import path
 from cards import views
 
