@@ -41,7 +41,7 @@ class FollowUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Follow
-        fields = ['user_this_user_is_following']
+        fields = ['user_this_user_is_following', 'id']
 
 
 class UnfollowUserSerializer(serializers.ModelSerializer):
@@ -50,7 +50,7 @@ class UnfollowUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Follow
-        fields = ['user_this_user_is_following']
+        fields = ['user_this_user_is_following', 'id']
 
 
 class ThisUserFollowsListSerializer(serializers.ModelSerializer):
@@ -77,4 +77,3 @@ class FollowsThisUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
         fields = ['this_user']
-
