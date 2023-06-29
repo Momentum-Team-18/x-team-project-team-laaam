@@ -16,7 +16,7 @@ class IsProfileOwnerOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return obj.username == request.user
+        return obj.username == request.user.username
 
 
 class IsThisUserUnfollowingOrReadOnly(permissions.BasePermission):
