@@ -1,5 +1,8 @@
 # Team LAAM BE README
 
+**https://cards-q6a8.onrender.com**
+
+
 **Token Authentication System**
 * Djoser
 * Docs: https://djoser.readthedocs.io/en/latest/introduction.html
@@ -9,30 +12,12 @@
 * Main Webservice Address: https://cards-q6a8.onrender.com
 * Database: Postgresql@14
 * Docs: https://render.com/docs/deploy-django
-
-**Endpoints**
-|Method  |URL                         |Input                             |Output                                   |Notes                                         |
-|--------|----------------------------|----------------------------------|-----------------------------------------|----------------------------------------------|
-|LOGIN   |auth/token/login/           |{{User.USERNAME_FIELD}}, password |HTTP_200_OK, auth_token|token create     |                                              |
-|LOGOUT  |auth/token/logout/          |-                                 |HTTP_204_NO_CONTENT                      |                                              |
-|        |                            |                                  |                                         |                                              |
-|GET     |api/cards/                  |                                  |list of all cards                        |
-|POST    |api/cards/                  |card data                         |new card                                 |retrieves card detail with specified pk       |
-|PATCH   |api/cards/<int:pk>/         |card data                         |updated card                             |updates card with specified pk                |
-|DELETE  |api/cards/<int:pk>/         |-                                 |-                                        |deletes card with specified pk                | 
-|GET     |api/profile/<int:pk>        |-                                 |user info                                |retrieves user with specified pk profile info |
-|PATCH   |api/profile/<int:pk>/       |-                                 |updated user profile                     |updates user profile with specified pk        |
-|DELETE  |api/profile/<int:pk>/       |-                                 |-                                        |deletes user profile with specified pk        |
-|GET     |api/cards/sent/             |-                                 |list of cards logged in user has sent    |associated field: sent_by_user, read-only     |
-|GET     |api/cards/received/         |-                                 |list of cards logged in user has received|associated field: sent_to_user, read-only     |
-|GET     |api/user_following/         |                                  |list of followers user is following      |
-|GET     |api/user_followers/         |                                  |list of followers of user                |
-|POST    |api/follow_user/            |username of user to be followed   |new follow relatioship                   |relationship is btw signed-in user and user they've requested to follow|
-|DELETE  |api/unfollow_user/<int:pk>  |-                                 |-                                        |<int:pk> is the follow relationship id (not user id/pk)|
-
+</br>
+</br>
 
 
 **CREATE USER**
+https://cards-q6a8.onrender.com/auth/users/
 
 *request*
 ```json
@@ -56,6 +41,7 @@ HTTP_201_created
 </br>
 
 **LOGIN**
+https://cards-q6a8.onrender.com/auth/token/login
 
 *request*
 ```json
@@ -78,6 +64,7 @@ HTTP_200_OK
 
 
 **LOGOUT**
+https://cards-q6a8.onrender.com/auth/token/logout/
 
 *request*
 ```json
@@ -93,6 +80,7 @@ HTTP_204_NO_CONTENT
 </br>
 
 **PROFILE**
+https://cards-q6a8.onrender.com/api/profile/username/
 
 *request*
 ```json
@@ -182,13 +170,19 @@ PATCH  api/profile/<username>/
 
 *request*
 ```json
-DELETE  api/profile</username>/
+DELETE  api/profile/<username>/
+```
+
+**response**
+```json
+204_NO_CONTENT
 ```
 
 </br>
 </br>
 
-**LIST ALL CARDS**
+**ALL CARDS**
+https://cards-q6a8.onrender.com/api/cards/
 
 *request*
 ```json
@@ -218,7 +212,11 @@ GET  api/cards/
         "back_text_font": "Script"
         },
 ```
+</br>
+</br>
 
+**CREATE A CARD**
+https://cards-q6a8.onrender.com/api/cards/
 *request*
 ```json
 POST  api/cards/
@@ -257,15 +255,16 @@ POST  api/cards/
 </br>
 </br>
 
-**SINGLE CARD**
+**RETRIEVE, UPDATE, DELETE SINGLE CARD**
+https://cards-q6a8.onrender.com/api/cards/pk
 
 *request*
 ```
-GET  api/profile/<int:pk>/
+GET api/profile/<int:pk>/
 ```
 
 *response*
-> single card: 
+
 ```json
         {
         "id": 11,,
@@ -330,6 +329,7 @@ DELETE  api/profile/<int:pk>/
 </br>
 
 **CARDS SENT BY USER**
+https://cards-q6a8.onrender.com/api/cards/sent/
 
 *request*
 ```json
@@ -337,7 +337,7 @@ GET  api/cards/sent/
 ```
 
 *response*
-> list of cards sent by user to other users
+
 ```json
     {
     "id": 11,
@@ -363,6 +363,7 @@ GET  api/cards/sent/
 </br>
 
 **CARDS RECEIVED BY USER**
+https://cards-q6a8.onrender.com/api/cards/received/
 
 *request*
 ```json
@@ -370,7 +371,7 @@ GET  api/cards/received/
 ```
 
 *response*
-> list of cards received by user from other users
+
 ```json
         {
         "id": 11,,
@@ -396,22 +397,26 @@ GET  api/cards/received/
 </br>
 
 **USER IS FOLLOWING**
+https://cards-q6a8.onrender.com/api/user_following/
 
 *request*
 ```json
 GET  api/user_following/
 ```
 *response*
-> list of users logged in user is following:
+
 ```json
     {
-    "user_this_user_is_following": "mac"
+      "user_this_user_is_following": "mac",
+      "id": 8
     },
     {
-    "user_this_user_is_following": "john"
+      "user_this_user_is_following": "john",
+      "id": 3
     },
     {
-        "user_this_user_is_following": "finn"
+      "user_this_user_is_following": "finn",
+      "id": 5
     }
 ```
 
@@ -419,6 +424,7 @@ GET  api/user_following/
 </br>
 
 **USERS FOLLOWING LOGGED IN USER**
+https://cards-q6a8.onrender.com/user_followers/
 
 *request*
 ```json
@@ -440,6 +446,7 @@ list of users following logged in user:
 </br>
 
 **USER REQUEST TO FOLLOW ANOTHER USER**
+https://cards-q6a8.onrender.com/api/follow_user/
 
 *request*
 ```json
@@ -460,6 +467,7 @@ POST  api/follow_user/
 </br>
 
 **USER REQUEST TO UNFOLLOW ANOTHER USER**
+https://cards-q6a8.onrender.com/unfollow_user/pk/
 
 *request*
 ```json
