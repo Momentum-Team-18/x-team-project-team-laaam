@@ -17,7 +17,7 @@
 
 
 **CREATE USER**
-https://cards-q6a8.onrender.com/auth/users/
+> https://cards-q6a8.onrender.com/auth/users/
 
 *request*
 ```json
@@ -41,7 +41,7 @@ HTTP_201_created
 </br>
 
 **LOGIN**
-https://cards-q6a8.onrender.com/auth/token/login
+> https://cards-q6a8.onrender.com/auth/token/login
 
 *request*
 ```json
@@ -64,7 +64,7 @@ HTTP_200_OK
 
 
 **LOGOUT**
-https://cards-q6a8.onrender.com/auth/token/logout/
+> https://cards-q6a8.onrender.com/auth/token/logout/
 
 *request*
 ```json
@@ -80,7 +80,7 @@ HTTP_204_NO_CONTENT
 </br>
 
 **PROFILE**
-https://cards-q6a8.onrender.com/api/profile/username/
+> https://cards-q6a8.onrender.com/api/profile/username/
 
 *request*
 ```json
@@ -182,7 +182,7 @@ DELETE  api/profile/<username>/
 </br>
 
 **ALL CARDS**
-https://cards-q6a8.onrender.com/api/cards/
+> https://cards-q6a8.onrender.com/api/cards/
 
 *request*
 ```json
@@ -216,7 +216,7 @@ GET  api/cards/
 </br>
 
 **CREATE A CARD**
-https://cards-q6a8.onrender.com/api/cards/
+> https://cards-q6a8.onrender.com/api/cards/
 *request*
 ```json
 POST  api/cards/
@@ -256,7 +256,7 @@ POST  api/cards/
 </br>
 
 **RETRIEVE, UPDATE, DELETE SINGLE CARD**
-https://cards-q6a8.onrender.com/api/cards/pk
+> https://cards-q6a8.onrender.com/api/cards/pk
 
 *request*
 ```
@@ -329,7 +329,7 @@ DELETE  api/profile/<int:pk>/
 </br>
 
 **CARDS SENT BY USER**
-https://cards-q6a8.onrender.com/api/cards/sent/
+> https://cards-q6a8.onrender.com/api/cards/sent/
 
 *request*
 ```json
@@ -363,7 +363,7 @@ GET  api/cards/sent/
 </br>
 
 **CARDS RECEIVED BY USER**
-https://cards-q6a8.onrender.com/api/cards/received/
+> https://cards-q6a8.onrender.com/api/cards/received/
 
 *request*
 ```json
@@ -397,7 +397,7 @@ GET  api/cards/received/
 </br>
 
 **USER IS FOLLOWING**
-https://cards-q6a8.onrender.com/api/user_following/
+> https://cards-q6a8.onrender.com/api/user_following/
 
 *request*
 ```json
@@ -424,7 +424,7 @@ GET  api/user_following/
 </br>
 
 **USERS FOLLOWING LOGGED IN USER**
-https://cards-q6a8.onrender.com/user_followers/
+> https://cards-q6a8.onrender.com/user_followers/
 
 *request*
 ```json
@@ -446,7 +446,7 @@ list of users following logged in user:
 </br>
 
 **USER REQUEST TO FOLLOW ANOTHER USER**
-https://cards-q6a8.onrender.com/api/follow_user/
+> https://cards-q6a8.onrender.com/api/follow_user/
 
 *request*
 ```json
@@ -467,7 +467,7 @@ POST  api/follow_user/
 </br>
 
 **USER REQUEST TO UNFOLLOW ANOTHER USER**
-https://cards-q6a8.onrender.com/unfollow_user/pk/
+> https://cards-q6a8.onrender.com/unfollow_user/pk/
 
 *request*
 ```json
