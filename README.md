@@ -447,7 +447,7 @@ list of users following logged in user:
 
 **USER REQUEST TO FOLLOW ANOTHER USER**
 > https://cards-q6a8.onrender.com/api/follow_user/
-
+> id is for follow relationship (not a user pk)
 *request*
 ```json
 POST  api/follow_user/
@@ -461,6 +461,7 @@ POST  api/follow_user/
 201_CREATED
     {
       "user_this_user_is_following": "finn"
+      "id": 28
     }
 ```
 </br>
@@ -468,6 +469,7 @@ POST  api/follow_user/
 
 **USER REQUEST TO UNFOLLOW ANOTHER USER**
 > https://cards-q6a8.onrender.com/unfollow_user/pk/
+> pk is id of follow relationship (not a user pk)
 
 *request*
 ```json
