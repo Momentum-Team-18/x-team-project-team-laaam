@@ -34,7 +34,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class FollowUserSerializer(serializers.ModelSerializer):
     '''
     POST method for follow instance
-    Renders username instead of pk/id
+    Renders username and follow relationship id
     '''
     user_this_user_is_following = serializers.SlugRelatedField(
         slug_field='username', queryset=User.objects.all())
@@ -45,6 +45,10 @@ class FollowUserSerializer(serializers.ModelSerializer):
 
 
 class UnfollowUserSerializer(serializers.ModelSerializer):
+    '''
+    DELETE method to unfollow user
+    Need follow relationship id for endpoint
+    '''
     user_this_user_is_following = serializers.SlugRelatedField(
         slug_field='username', queryset=User.objects.all())
 
